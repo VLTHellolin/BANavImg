@@ -5,7 +5,12 @@ import axios from 'axios';
 utils.setHtmlTitle('Index');
 var imgSrc = ref('');
 async function fetchImg() {
-  let imgId = await axios.get('/api/random');
+  let imgId = await axios.get('/api/random', {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  console.log(imgId);
   imgSrc.value = `https://pixiv.re/${imgId}.png`;
 }
 </script>
