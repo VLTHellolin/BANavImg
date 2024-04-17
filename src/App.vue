@@ -6,7 +6,7 @@ import AppFooter from './components/AppFooter.vue';
 
 <template lang="pug">
 AppHeader
-#main_container.ui.container
+#main-container.ui.container
   RouterView
 AppFooter
 </template>

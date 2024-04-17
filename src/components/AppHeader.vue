@@ -7,21 +7,15 @@ const LeftMenu = ref([
     href: '/',
   },
 ]);
-const RightMenu = ref([
-  {
-    name: 'About',
-    icon: 'info circle',
-    href: '/about',
-  },
-]);
+const RightMenu = ref([]);
 </script>
 
 <template lang="pug">
-#header_container.ui.borderless.top.fixed.menu
+#header-container.ui.borderless.top.fixed.menu
   .ui.container
     router-link.item(to='/')
       #sitename
-        span#sitename_accent.ui.text Vue
+        span#sitename-accent.ui.text Vue
         span.ui.text App
     each it in LeftMenu
       router-link.item(
