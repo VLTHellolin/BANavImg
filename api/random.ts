@@ -1,7 +1,7 @@
 import { HandleResponse } from 'serverless-kit';
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { getRandomInteger } from './utils';
-import { getPixivImg } from './sources/pixiv';
+import { getRandomInteger } from './utils.js';
+import { getPixivImg } from './sources/pixiv.js';
 
 const gettersList = [getPixivImg];
 
