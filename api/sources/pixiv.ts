@@ -20,7 +20,7 @@ export async function getPixivImg(tags: string[]): Promise<string> {
         let imgList = data?.body?.illustManga?.data;
         if (!imgList) throw 'API returned an unexpected value.';
         let imgNum = getRandomInteger(0, imgList.length - 1);
-        result = `https://pixiv.re/${imgList[imgNum].id}.png`;
+        result = imgList[imgNum].id;
       },
       (err) => {
         throw err;
