@@ -4,5 +4,5 @@ utils.setHtmlTitle('Index');
 </script>
 
 <template lang="pug">
-p Index
+p Hello World
 </template>
