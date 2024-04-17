@@ -7,7 +7,7 @@ const USER_AGENT =
 export async function getPixivImg(tags: string[]): Promise<string> {
   let tagString = `${tags.join(' ')} 10000users入り`;
   let result: string = '';
-  axios
+  await axios
     .get(`https://pixiv.net/ajax/search/artworks/${tagString}`, {
       headers: {
         referer: 'https://www.pixiv.net/',
