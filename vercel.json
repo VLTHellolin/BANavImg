@@ -1,0 +1,5 @@
+{
+  "framework": "vue",
+  "devCommand": "vite --port $PORT",
+  "headers": []
+}
