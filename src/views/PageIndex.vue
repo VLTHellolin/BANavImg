@@ -10,8 +10,7 @@ async function fetchImg() {
       'Content-Type': 'application/json',
     },
   });
-  console.log(imgId);
-  imgSrc.value = `https://pixiv.re/${imgId}.png`;
+  imgSrc.value = `https://pixiv.re/${imgId.data.body}.png`;
 }
 </script>
 
