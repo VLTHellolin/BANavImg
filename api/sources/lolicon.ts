@@ -16,6 +16,7 @@ export async function getLoliconImg(tags: string[]): Promise<imgSource> {
         r18: 0,
         num: 1,
         tag: [tags.join('|')],
+        excludeAI: true,
       },
     })
     .catch((err) => {
