@@ -15,7 +15,7 @@ export async function getLoliconImg(): Promise<imgSource> {
       params: {
         r18: 0,
         num: 1,
-        tag: [config.tags.lolicon.join('|')],
+        tag: config.tags.lolicon.join('|'),
         excludeAI: true,
       },
     })
