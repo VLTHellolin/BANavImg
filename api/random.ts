@@ -10,7 +10,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
   const handle = new HandleResponse(req, res);
   let tags = ['ブルーアーカイブ', 'Blue Archive'];
   try {
-    let getterNum = getRandomInteger(0, gettersList.length - 1);
+    let getterNum = getRandomInteger(0, gettersList.length);
     let result = await gettersList[getterNum](tags);
     return handle.send(200, 'ok', result);
   } catch (err: any) {
