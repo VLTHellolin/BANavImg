@@ -5,7 +5,7 @@ import { config } from '../config.js';
 const USER_AGENT = config.user_agent;
 const PXIMG_URL = config.pximg_url;
 
-export async function getLoliconImg(tags: string[]): Promise<imgSource> {
+export async function getLoliconImg(): Promise<imgSource> {
   let apiResult = await axios
     .get('https://api.lolicon.app/setu/v2', {
       headers: {
@@ -15,7 +15,7 @@ export async function getLoliconImg(tags: string[]): Promise<imgSource> {
       params: {
         r18: 0,
         num: 1,
-        tag: [tags.join('|')],
+        tag: [config.tags.lolicon.join('|')],
         excludeAI: true,
       },
     })

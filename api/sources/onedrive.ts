@@ -6,7 +6,7 @@ import { getRandomInteger } from '../utils.js';
 const TOKEN = config.onedrive_public_access_token;
 const API_URL = config.onedrive_api_url;
 
-export async function getOneDriveImg(tags: string[]): Promise<imgSource> {
+export async function getOneDriveImg(): Promise<imgSource> {
   let apiResult = await axios.get(API_URL, {
     headers: {
       Accept: 'application/json, text/plain, */*',

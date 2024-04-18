@@ -12,11 +12,10 @@ export default async function (req: VercelRequest, res: VercelResponse) {
   if (typeof req.query.source === 'string')
     specified = parseInt(req.query.source);
   const handle = new HandleResponse(req, res);
-  let tags = ['ブルーアーカイブ', 'BlueArchive', '碧蓝档案', '蔚蓝档案'];
   try {
     let getterNum =
       specified === -1 ? getRandomInteger(0, gettersList.length) : specified;
-    let result = await gettersList[getterNum](tags);
+    let result = await gettersList[getterNum]();
     return handle.send(200, 'ok', result);
   } catch (err: any) {
     return handle.send(
