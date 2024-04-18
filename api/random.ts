@@ -3,8 +3,9 @@ import { VercelRequest, VercelResponse } from '@vercel/node';
 import { getRandomInteger } from './utils.js';
 import { getPixivImg } from './sources/pixiv.js';
 import { getLoliconImg } from './sources/lolicon.js';
+import { getOneDriveImg } from './sources/onedrive.js';
 
-const gettersList = [getPixivImg, getLoliconImg];
+const gettersList = [getPixivImg, getLoliconImg, getOneDriveImg];
 
 export default async function (req: VercelRequest, res: VercelResponse) {
   const handle = new HandleResponse(req, res);

@@ -1,4 +1,4 @@
-export class imgSource {
+export interface imgSource {
   source: string;
   url: string;
   title: string;
