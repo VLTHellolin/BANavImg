@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import * as utils from '../utils';
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import axios from 'axios';
 utils.setHtmlTitle('Index');
-var imgFrom = ref('请先执行请求');
+var imgData = reactive({
+  source: '',
+  title: '',
+  author: '',
+});
 var imgSrc = ref('/img/lx.jpg');
 var imgLoading = ref(false);
 async function fetchImg() {
@@ -13,7 +17,7 @@ async function fetchImg() {
       'Content-Type': 'application/json',
     },
   });
-  imgFrom.value = imgRes.data.body.source;
+  imgData = imgRes.data.body;
   imgSrc.value = imgRes.data.body.url;
   imgLoading.value = false;
 }
@@ -21,14 +25,19 @@ async function fetchImg() {
 
 <template lang="pug">
 p 咕咕咕
-p 暂时不支持传递自定义 tag、年龄分级等内容
-p OneDrive 源有一些图片看起来低清，因为保存的时候参数设错了（悲），以后可能会修
-p Image From {{ imgFrom }}
+p OneDrive 源有些图片低清是因为参数错了，以后修。
+p 该源也不能显示标题与作者。
+if imgData.source === ''
+  p 请先执行请求。
+else if imgData.source === 'onedrive'
+  p 这张图来自 OneDrive。
+else
+  p 这张图是来自 {{ imgData.source }} 的 {{ imgData.author }} 创作的 {{ imgData.title }}。
 button.ui.primary.button(@click='fetchImg()') GET
 br
 br
 if imgLoading
   p Loading...
 else
-  img.ui.huge.image.centered(:src='imgSrc' alt='img')
+  img.ui.huge.image.centered(:disabled='imgLoading', :src='imgSrc' alt='img')
 </template>
