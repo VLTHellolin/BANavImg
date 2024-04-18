@@ -14,7 +14,7 @@ export async function getOneDriveImg(tags: string[]): Promise<imgSource> {
       Authorization: `Bearer ${TOKEN}`,
     },
   });
-  let data = apiResult?.data;
+  let data = apiResult?.data.value;
   if (!data) throw 'API returned an unexpected value.';
   let imgNum = getRandomInteger(0, data.length);
   let result = data[imgNum];
