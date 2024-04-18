@@ -2,8 +2,9 @@ import { HandleResponse } from 'serverless-kit';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { getRandomInteger } from './utils.js';
 import { getPixivImg } from './sources/pixiv.js';
+import { getLoliconImg } from './sources/lolicon.js';
 
-const gettersList = [getPixivImg];
+const gettersList = [getPixivImg, getLoliconImg];
 
 export default async function (req: VercelRequest, res: VercelResponse) {
   const handle = new HandleResponse(req, res);

@@ -3,19 +3,24 @@ import * as utils from '../utils';
 import { ref } from 'vue';
 import axios from 'axios';
 utils.setHtmlTitle('Index');
-var imgSrc = ref('');
+var imgFrom = ref('请先执行请求');
+var imgSrc = ref('/img/lx.jpg');
 async function fetchImg() {
-  let imgId = await axios.get('/api/random', {
+  let imgRes = await axios.get('/api/random', {
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  imgSrc.value = `https://pixiv.re/${imgId.data.body}.png`;
+  imgFrom.value = imgRes.data.body.source;
+  imgSrc.value = imgRes.data.body.url;
 }
 </script>
 
 <template lang="pug">
-p Hello World
+p 咕咕咕
+p 暂时不支持传递自定义 tag、年龄分级等内容
+p Image From {{ imgFrom }}
 button.ui.primary.button(@click='fetchImg()') GET
-img.ui.image(:src='imgSrc' alt=':)')
+br
+img.ui.huge.image.centered(:src='imgSrc' alt='img')
 </template>
