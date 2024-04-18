@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { getRandomInteger } from '../utils.js';
 import { imgSource } from '../image.js';
+import { config } from '../config.js';
 
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edge/122.0.0.0';
-const PXIMG_URL = 'https://pixiv.re';
+const USER_AGENT = config.user_agent;
+const PXIMG_URL = config.pximg_url;
 
 export async function getPixivImg(tags: string[]): Promise<imgSource> {
   let tagString = `${tags.join(' ')} 10000users入り`;
@@ -21,9 +21,7 @@ export async function getPixivImg(tags: string[]): Promise<imgSource> {
     });
   let data = apiResult?.data;
   if (data?.error) throw 'API returned an unexpected value.';
-  let imgList = data?.body?.illustManga?.data.filter(
-    (e) => !e.tags.includes('R-18')
-  );
+  let imgList = data?.body?.illustManga?.data;
   if (!imgList) throw 'API returned an unexpected value.';
   let imgNum = getRandomInteger(0, imgList.length);
   let result = imgList[imgNum];
