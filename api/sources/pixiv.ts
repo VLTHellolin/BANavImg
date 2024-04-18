@@ -8,7 +8,6 @@ const PXIMG_URL = 'https://pixiv.re';
 
 export async function getPixivImg(tags: string[]): Promise<imgSource> {
   let tagString = `${tags.join(' ')} 10000users入り`;
-  let result: string = '';
   let apiResult = await axios
     .get(`https://pixiv.net/ajax/search/artworks/${tagString}`, {
       headers: {
@@ -25,9 +24,13 @@ export async function getPixivImg(tags: string[]): Promise<imgSource> {
   let imgList = data?.body?.illustManga?.data;
   if (!imgList) throw 'API returned an unexpected value.';
   let imgNum = getRandomInteger(0, imgList.length - 1);
-  result = imgList[imgNum].id;
+  let result = imgList[imgNum];
   return {
     source: 'pixiv',
-    url: `${PXIMG_URL}/${result}.png`,
+    url: `${PXIMG_URL}/${result.id}.png`,
+    title: result.title,
+    author: result.userName,
+    r18: false,
+    id: parseInt(result.id),
   };
 }

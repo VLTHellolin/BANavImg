@@ -6,7 +6,7 @@ const USER_AGENT =
 const PXIMG_URL = 'https://pixiv.re';
 
 export async function getLoliconImg(tags: string[]): Promise<imgSource> {
-  let result = await axios
+  let apiResult = await axios
     .get('https://api.lolicon.app/setu/v2', {
       headers: {
         'User-Agent': USER_AGENT,
@@ -21,11 +21,16 @@ export async function getLoliconImg(tags: string[]): Promise<imgSource> {
     .catch((err) => {
       throw err;
     });
-  let data = result?.data;
+  let data = apiResult?.data;
   if (!data || !data?.data[0]?.pid) throw 'API returned an unexpected value.';
   if (data.error) throw data.error;
+  let result = data.data[0];
   return {
     source: 'lolicon',
-    url: `${PXIMG_URL}/${data.data[0].pid}.png`,
+    url: `${PXIMG_URL}/${result.pid}.png`,
+    title: result.title,
+    author: result.author,
+    r18: result.r18,
+    id: result.pid,
   };
 }

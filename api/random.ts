@@ -8,7 +8,7 @@ const gettersList = [getPixivImg, getLoliconImg];
 
 export default async function (req: VercelRequest, res: VercelResponse) {
   const handle = new HandleResponse(req, res);
-  let tags = ['ブルーアーカイブ', 'Blue Archive'];
+  let tags = ['ブルーアーカイブ', 'BlueArchive'];
   try {
     let getterNum = getRandomInteger(0, gettersList.length);
     let result = await gettersList[getterNum](tags);
