@@ -21,9 +21,11 @@ export async function getPixivImg(tags: string[]): Promise<imgSource> {
     });
   let data = apiResult?.data;
   if (data?.error) throw 'API returned an unexpected value.';
-  let imgList = data?.body?.illustManga?.data;
+  let imgList = data?.body?.illustManga?.data.filter(
+    (e) => !e.tags.includes('R-18')
+  );
   if (!imgList) throw 'API returned an unexpected value.';
-  let imgNum = getRandomInteger(0, imgList.length - 1);
+  let imgNum = getRandomInteger(0, imgList.length);
   let result = imgList[imgNum];
   return {
     source: 'pixiv',
