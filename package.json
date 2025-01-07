@@ -33,7 +33,7 @@
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vue/language-plugin-pug": "^2.0.12",
     "@vue/tsconfig": "^0.5.1",
-    "cookie": "^0.6.0",
+    "cookie": "^0.7.0",
     "dayjs": "^1.11.10",
     "dexie": "^4.0.4",
     "eslint": "^8.49.0",
